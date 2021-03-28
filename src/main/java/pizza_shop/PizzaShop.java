@@ -4,16 +4,15 @@ import pizza_shop.order.Order;
 import pizza_shop.order.OrderImpl;
 import pizza_shop.pizza.Pizza;
 import pizza_shop.pizza.pizza_menu.*;
+import pizza_shop.service.OrderPriceCalculator;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class PizzaShop {
 
@@ -27,14 +26,23 @@ public class PizzaShop {
         new Vezuvijus()
         );
 
+    private OrderPriceCalculator orderPriceCalculator = new OrderPriceCalculator();
     private List<Order> orders = new ArrayList<>();
 
     public void placeOrder(List<Pizza> pizzas) {
-        this.placeOrder(pizzas, false);
+        this.placeOrder(pizzas, false, LocalDate.now());
     }
 
     public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount) {
-        orders.add(new OrderImpl(pizzas, isStudentDiscount));
+        this.placeOrder(pizzas, isStudentDiscount, LocalDate.now());
+    }
+
+    public void placeHistoryOrder(List<Pizza> pizzas, LocalDate orderDate) {
+        this.placeOrder(pizzas, false, orderDate);
+    }
+
+    public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount, LocalDate orderDate) {
+        orders.add(new OrderImpl(pizzas, isStudentDiscount, orderDate));
     }
 
     /**
@@ -62,7 +70,7 @@ public class PizzaShop {
     public BigDecimal getRevenuePerMonth(Month month, Year year)
     {
         return orders.stream()
-                .filter(o -> isOrderGivenMonth(o, month, year))
+                .filter(o -> orderPriceCalculator.isOrderGivenMonth(o, month, year))
                 .map(Order::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
@@ -70,9 +78,9 @@ public class PizzaShop {
     /**
      * 3. Užduotis, part 2
      */
-    public int getNumberOrStudents(Month month, Year year) {
+    public int getNumberOfStudentsOrders(Month month, Year year) {
         return (int) orders.stream()
-                .filter(o -> isOrderGivenMonth(o, month, year))
+                .filter(o -> orderPriceCalculator.isOrderGivenMonth(o, month, year))
                 .filter(Order::isIsStudentDiscount)
                 .count();
     }
@@ -81,28 +89,21 @@ public class PizzaShop {
      * 4. Užduotis, part 1
      */
     public BigDecimal getAverageOrderPrice() {
-        return calculateAverageOrder(orders.stream());
+        return orderPriceCalculator.calculateAverageOrder(orders);
     }
 
     /**
      * 4. Užduotis, part 2
      */
     public BigDecimal getAverageOrderPrice(Month month, Year year) {
-        return calculateAverageOrder(orders
-                .stream()
-                .filter(o -> isOrderGivenMonth(o, month, year)));
-
+        return orderPriceCalculator.calculateAverageOrderPeriod(orders, month, year);
     }
 
-    private BigDecimal calculateAverageOrder(Stream<Order> orderStream) {
-        return orderStream
-                .map(Order::getTotalPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .divide(BigDecimal.valueOf(orders.size()), RoundingMode.HALF_DOWN);
+    public List<Pizza> getAvailablePizzas() {
+        return availablePizzas;
     }
 
-    private boolean isOrderGivenMonth(Order o, Month month, Year year) {
-        return o.getPurchaseDate().getMonth().equals(month)
-                &&  Year.of(o.getPurchaseDate().getYear()).equals(year);
+    public List<Order> getOrders() {
+        return orders;
     }
 }

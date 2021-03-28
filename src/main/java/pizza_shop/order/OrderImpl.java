@@ -21,6 +21,12 @@ public class OrderImpl implements Order {
         this.purchaseDate = LocalDate.now();
     }
 
+    public OrderImpl(List<Pizza> pizzaList, boolean isStudentDiscount, LocalDate purchaseDate) {
+        this.pizzaList = pizzaList;
+        this.isStudentDiscount = isStudentDiscount;
+        this.purchaseDate = purchaseDate;
+    }
+
     @Override
     public List<Pizza> getPizzaList() {
         return pizzaList;
