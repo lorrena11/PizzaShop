@@ -7,6 +7,10 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/**
+ * Peperonni implementation of the pizza
+ * This pizza needs supply on Monday
+ */
 public class Peperonni extends Pizza {
 
     private DayOfWeek dayOfSupply = DayOfWeek.MONDAY;

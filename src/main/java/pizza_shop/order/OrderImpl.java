@@ -14,7 +14,6 @@ public class OrderImpl implements Order {
     private boolean isStudentDiscount;
     private LocalDate purchaseDate;
 
-
     public OrderImpl(List<Pizza> pizzaList, boolean isStudentDiscount) {
         this.pizzaList = pizzaList;
         this.isStudentDiscount = isStudentDiscount;
@@ -33,7 +32,7 @@ public class OrderImpl implements Order {
     }
 
     @Override
-    public boolean isIsStudentDiscount() {
+    public boolean isStudentDiscount() {
         return isStudentDiscount;
     }
 

@@ -7,6 +7,10 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/**
+ * Socioji implementation of the pizza
+ * This pizza needs supply on Friday
+ */
 public class Socioji extends Pizza {
 
     private DayOfWeek dayOfSupply = DayOfWeek.FRIDAY;

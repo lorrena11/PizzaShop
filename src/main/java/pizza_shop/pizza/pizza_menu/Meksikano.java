@@ -7,6 +7,10 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/**
+ * Meksikano implementation of the pizza
+ * This pizza needs supply on Wednesday
+ */
 public class Meksikano extends Pizza {
 
     private DayOfWeek dayOfSupply = DayOfWeek.WEDNESDAY;

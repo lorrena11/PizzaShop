@@ -6,6 +6,10 @@ import pizza_shop.pizza.PizzaSize;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+/**
+ * Margarita implementation of the pizza
+ * This pizza does not need any supply to be ordered
+ */
 public class Margarita extends Pizza {
 
     private static final BigDecimal SMALL_PRICE = BigDecimal.valueOf(3);

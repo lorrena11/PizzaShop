@@ -4,6 +4,9 @@ import pizza_shop.service.PizzaPriceCalculator;
 
 import java.math.BigDecimal;
 
+/**
+ * Abstract implementation of pizza
+ */
 public abstract class Pizza implements PizzaAttributes, SupplyIntervalCalculator {
 
     private PizzaSize pizzaSize;

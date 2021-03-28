@@ -7,6 +7,10 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/**
+ * Vezuvijus implementation of the pizza
+ * This pizza needs supply on Saturday
+ */
 public class Vezuvijus extends Pizza {
 
     private DayOfWeek dayOfSupply = DayOfWeek.SATURDAY;

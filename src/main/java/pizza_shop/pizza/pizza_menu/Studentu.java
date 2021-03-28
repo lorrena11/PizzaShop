@@ -7,6 +7,10 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+/**
+ * Studentu implementation of the pizza
+ * This pizza needs supply on Friday
+ */
 public class Studentu extends Pizza {
 
     private DayOfWeek dayOfSupply = DayOfWeek.FRIDAY;

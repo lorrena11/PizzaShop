@@ -77,7 +77,5 @@ class OrderPriceCalculatorTest {
         BigDecimal averageOrder = orderPriceCalculator.calculateAverageOrderPeriod(orders, Month.JANUARY, Year.of(2021));
 
         assert averageOrder.equals(BigDecimal.valueOf(6));
-
-
     }
 }
