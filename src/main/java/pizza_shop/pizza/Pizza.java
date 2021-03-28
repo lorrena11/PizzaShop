@@ -1,6 +1,6 @@
 package pizza_shop.pizza;
 
-import pizza_shop.service.PriceCalculator;
+import pizza_shop.service.PizzaPriceCalculator;
 
 import java.math.BigDecimal;
 
@@ -10,7 +10,7 @@ public abstract class Pizza implements PizzaAttributes, SupplyIntervalCalculator
     private BigDecimal smallPrice;
     private BigDecimal mediumPrice;
     private BigDecimal largePrice;
-    private PriceCalculator priceCalculator = new PriceCalculator();
+    private PizzaPriceCalculator pizzaPriceCalculator = new PizzaPriceCalculator();
 
     public Pizza(PizzaSize pizzaSize, BigDecimal smallPrice, BigDecimal mediumPrice, BigDecimal largePrice) {
         this.pizzaSize = pizzaSize;
@@ -26,7 +26,7 @@ public abstract class Pizza implements PizzaAttributes, SupplyIntervalCalculator
 
     @Override
     public BigDecimal getPrice() {
-        return priceCalculator.calculatePrice(this);
+        return pizzaPriceCalculator.calculatePrice(this);
     }
 
     public BigDecimal getSmallPrice() {
