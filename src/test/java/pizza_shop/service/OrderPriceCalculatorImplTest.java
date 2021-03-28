@@ -16,15 +16,15 @@ import java.time.Year;
 import java.util.List;
 
 
-class OrderPriceCalculatorTest {
+class OrderPriceCalculatorImplTest {
 
-    private OrderPriceCalculator orderPriceCalculator = new OrderPriceCalculator();
+    private OrderPriceCalculator orderPriceCalculatorImpl = new OrderPriceCalculatorImpl();
 
     @Test
     void getOrderPrice_regular() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM));
 
-        BigDecimal orderPrice = orderPriceCalculator.getOrderPrice(pizzas, false);
+        BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, false);
         assert orderPrice.equals(BigDecimal.valueOf(7));
     }
 
@@ -32,7 +32,7 @@ class OrderPriceCalculatorTest {
     void getOrderPrice_student() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM));
 
-        BigDecimal orderPrice = orderPriceCalculator.getOrderPrice(pizzas, true);
+        BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, true);
         assert orderPrice.equals(BigDecimal.valueOf(5));
     }
 
@@ -40,7 +40,7 @@ class OrderPriceCalculatorTest {
     void getOrderPrice_cheapest_free() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM), new Peperonni(PizzaSize.LARGE), new Vezuvijus(PizzaSize.MEDIUM));
 
-        BigDecimal orderPrice = orderPriceCalculator.getOrderPrice(pizzas, false);
+        BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, false);
         assert orderPrice.equals(BigDecimal.valueOf(17.5));
     }
 
@@ -48,7 +48,7 @@ class OrderPriceCalculatorTest {
     void getOrderPrice_cheapest_free_student() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM), new Peperonni(PizzaSize.LARGE), new Vezuvijus(PizzaSize.MEDIUM));
 
-        BigDecimal orderPrice = orderPriceCalculator.getOrderPrice(pizzas, true);
+        BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, true);
         assert orderPrice.equals(BigDecimal.valueOf(14.5));
     }
 
@@ -60,7 +60,7 @@ class OrderPriceCalculatorTest {
         Order order2 = new OrderImpl(pizzas, false);
 
         List<Order> orders = List.of(order1, order2);
-        assert orderPriceCalculator.calculateAverageOrder(orders).equals(BigDecimal.valueOf(6));
+        assert orderPriceCalculatorImpl.calculateAverageOrder(orders).equals(BigDecimal.valueOf(6));
     }
 
     @Test
@@ -74,7 +74,7 @@ class OrderPriceCalculatorTest {
 
         List<Order> orders = List.of(order1, order2, order3, order4);
 
-        BigDecimal averageOrder = orderPriceCalculator.calculateAverageOrderPeriod(orders, Month.JANUARY, Year.of(2021));
+        BigDecimal averageOrder = orderPriceCalculatorImpl.calculateAverageOrderPeriod(orders, Month.JANUARY, Year.of(2021));
 
         assert averageOrder.equals(BigDecimal.valueOf(6));
     }

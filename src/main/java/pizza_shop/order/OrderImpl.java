@@ -2,6 +2,7 @@ package pizza_shop.order;
 
 import pizza_shop.pizza.Pizza;
 import pizza_shop.service.OrderPriceCalculator;
+import pizza_shop.service.OrderPriceCalculatorImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class OrderImpl implements Order {
 
-    private OrderPriceCalculator orderPriceCalculator = new OrderPriceCalculator();
+    private OrderPriceCalculator orderPriceCalculatorImpl = new OrderPriceCalculatorImpl();
     private List<Pizza> pizzaList;
     private boolean isStudentDiscount;
     private LocalDate purchaseDate;
@@ -43,6 +44,6 @@ public class OrderImpl implements Order {
 
     @Override
     public BigDecimal getTotalPrice() {
-        return orderPriceCalculator.getOrderPrice(pizzaList, isStudentDiscount);
+        return orderPriceCalculatorImpl.getOrderPrice(pizzaList, isStudentDiscount);
     }
 }

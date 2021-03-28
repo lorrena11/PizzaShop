@@ -16,19 +16,12 @@ import java.util.stream.Collectors;
 /**
  * Service that is responsible for order price calculation
  */
-public class OrderPriceCalculator {
+public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
 
     private static final BigDecimal STUDENT_DISCOUNT = BigDecimal.ONE;
     private static final int MIN_PIZZA_FOR_FREE = 4;
 
-    /**
-     * 1. Užduotis
-     * If the pizza list is empty it should throw an exception;
-     * If pizza list has more or equal to minimum size for free pizza we give the cheapest one for free
-     * @param pizzaList pizzas that customer ordered
-     * @param isStudentDiscount determines whether the customer is student or not
-     * @return total amount of the order
-     */
+    @Override
     public BigDecimal getOrderPrice(List<Pizza> pizzaList, boolean isStudentDiscount) {
         if (pizzaList.isEmpty()) {
             throw new EmptyOrderException();
@@ -39,10 +32,7 @@ public class OrderPriceCalculator {
         return getRegularOrderPrice(pizzaList, isStudentDiscount);
     }
 
-    /**
-     * @param orders orders that pizza shop already has
-     * @return average amount of the order
-     */
+    @Override
     public BigDecimal calculateAverageOrder(List<Order> orders) {
         return orders.stream()
                 .map(Order::getTotalPrice)
@@ -50,12 +40,7 @@ public class OrderPriceCalculator {
                 .divide(BigDecimal.valueOf(orders.size()), RoundingMode.HALF_DOWN);
     }
 
-    /**
-     * @param orders orders that pizza shop already has
-     * @param month  when the order was completed
-     * @param year when the order was completed
-     * @return average order price by the given period
-     */
+    @Override
     public BigDecimal calculateAverageOrderPeriod(List<Order> orders, Month month, Year year) {
         List<Order> filteredOrders = orders
                 .stream()
@@ -64,9 +49,7 @@ public class OrderPriceCalculator {
         return calculateAverageOrder(filteredOrders);
     }
 
-    /**
-     * Determines if the order was made on the given month and year
-     */
+    @Override
     public boolean isOrderGivenMonth(Order o, Month month, Year year) {
         return o.getPurchaseDate().getMonth().equals(month)
                 &&  Year.of(o.getPurchaseDate().getYear()).equals(year);

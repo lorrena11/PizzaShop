@@ -5,6 +5,7 @@ import pizza_shop.order.OrderImpl;
 import pizza_shop.pizza.Pizza;
 import pizza_shop.pizza.pizza_menu.*;
 import pizza_shop.service.OrderPriceCalculator;
+import pizza_shop.service.OrderPriceCalculatorImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -35,7 +36,7 @@ public class PizzaShop {
     /**
      * Calculator that needs to be used to calculate order price
      */
-    private OrderPriceCalculator orderPriceCalculator = new OrderPriceCalculator();
+    private OrderPriceCalculator orderPriceCalculatorImpl = new OrderPriceCalculatorImpl();
 
     /**
      * All orders that were made in this pizza shop
@@ -105,7 +106,7 @@ public class PizzaShop {
     public BigDecimal getRevenuePerMonth(Month month, Year year)
     {
         return orders.stream()
-                .filter(o -> orderPriceCalculator.isOrderGivenMonth(o, month, year))
+                .filter(o -> orderPriceCalculatorImpl.isOrderGivenMonth(o, month, year))
                 .map(Order::getTotalPrice)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
@@ -116,7 +117,7 @@ public class PizzaShop {
      */
     public int getNumberOfStudentsOrders(Month month, Year year) {
         return (int) orders.stream()
-                .filter(o -> orderPriceCalculator.isOrderGivenMonth(o, month, year))
+                .filter(o -> orderPriceCalculatorImpl.isOrderGivenMonth(o, month, year))
                 .filter(Order::isStudentDiscount)
                 .count();
     }
@@ -126,7 +127,7 @@ public class PizzaShop {
      * Calculates the price of all orders that ware placed in pizza shop
      */
     public BigDecimal getAverageOrderPrice() {
-        return orderPriceCalculator.calculateAverageOrder(orders);
+        return orderPriceCalculatorImpl.calculateAverageOrder(orders);
     }
 
     /**
@@ -134,7 +135,7 @@ public class PizzaShop {
      * Calculates the price of all orders that ware placed in pizza shop by the given month and year
      */
     public BigDecimal getAverageOrderPrice(Month month, Year year) {
-        return orderPriceCalculator.calculateAverageOrderPeriod(orders, month, year);
+        return orderPriceCalculatorImpl.calculateAverageOrderPeriod(orders, month, year);
     }
 
     /**

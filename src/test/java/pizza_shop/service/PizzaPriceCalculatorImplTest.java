@@ -7,9 +7,9 @@ import pizza_shop.pizza.pizza_menu.Margarita;
 
 import java.math.BigDecimal;
 
-class PizzaPriceCalculatorTest {
+class PizzaPriceCalculatorImplTest {
 
-    private PizzaPriceCalculator pizzaPriceCalculator = new PizzaPriceCalculator();
+    private PizzaPriceCalculator pizzaPriceCalculatorImpl = new PizzaPriceCalculatorImpl();
 
     @Test
     void calculatePrice() {
@@ -17,9 +17,9 @@ class PizzaPriceCalculatorTest {
         Pizza margaritaMedium = new Margarita(PizzaSize.MEDIUM);
         Pizza margaritaLarge = new Margarita(PizzaSize.LARGE);
 
-        BigDecimal smallPrice = pizzaPriceCalculator.calculatePrice(margaritaSmall);
-        BigDecimal mediumPrice = pizzaPriceCalculator.calculatePrice(margaritaMedium);
-        BigDecimal largePrice = pizzaPriceCalculator.calculatePrice(margaritaLarge);
+        BigDecimal smallPrice = pizzaPriceCalculatorImpl.calculatePrice(margaritaSmall);
+        BigDecimal mediumPrice = pizzaPriceCalculatorImpl.calculatePrice(margaritaMedium);
+        BigDecimal largePrice = pizzaPriceCalculatorImpl.calculatePrice(margaritaLarge);
 
         assert margaritaSmall.getPrice().equals(smallPrice);
         assert margaritaMedium.getPrice().equals(mediumPrice);
