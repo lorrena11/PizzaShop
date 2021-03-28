@@ -4,12 +4,12 @@ import pizza_shop.pizza.Pizza;
 import pizza_shop.pizza.PizzaSize;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 public class Meksikano extends Pizza {
 
-    // every three days
-    private LocalDate lastSupplyOrderMade = null;
+    private DayOfWeek dayOfSupply = DayOfWeek.WEDNESDAY;
 
     private static final BigDecimal SMALL_PRICE = BigDecimal.valueOf(5);
     private static final BigDecimal MEDIUM_PRICE = BigDecimal.valueOf(6);
@@ -25,25 +25,13 @@ public class Meksikano extends Pizza {
 
     @Override
     public boolean needsSupply(LocalDate serviceDate) {
-        // returns true if given date is the date for service
-        return serviceDate.equals(LocalDate.of(getDateOfService().getYear(), getDateOfService().getMonth(), getDateOfService().getDayOfMonth()));
+        // returns true if given date is monday
+        return serviceDate.getDayOfWeek().equals(dayOfSupply);
     }
 
     @Override
     public boolean needsSupply() {
-        return LocalDate.now().equals(getDateOfService());
-    }
-
-    private LocalDate getDateOfService() {
-        if(lastSupplyOrderMade == null) {
-            // service was never done, do it now
-            supplyCompleted();
-        }
-        // last day of service + 3 days
-        return lastSupplyOrderMade.plusDays(3);
-    }
-
-    private void supplyCompleted() {
-        lastSupplyOrderMade = LocalDate.now();
+        // true if today is monday
+        return LocalDate.now().getDayOfWeek().equals(dayOfSupply);
     }
 }

@@ -30,9 +30,8 @@ Pastaba: System.out.printLn() galima naudoti tik Main klasėje.
 Restoranas skirtingomis dienomis atlieka uzsakymus produktams, skirtus picoms gaminti. Uzsakymai atliekami siomis dienomis:
 * Margarita - uzsakymai neatliekami (produktai lieka nuo kitų picų)
 * Peperonni - kiekviena pirmadieni
-* Havaju - kas dvi dienas
+* Havaju ir Meksikano - kiekviena treciadieni
 * Socioji ir Studentu - kiekviena penktadieni
-* Meksikano - kas tris dienas
 * Vezuvijus - kiekviena šeštadienį
 
 Sistema turi sugebėti grąžinti sarašą picų, kuriom picom reikia užsakymą atlikti šiandien arba pagal duotą datą.

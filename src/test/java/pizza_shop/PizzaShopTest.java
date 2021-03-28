@@ -3,7 +3,7 @@ package pizza_shop;
 import org.junit.jupiter.api.Test;
 import pizza_shop.pizza.Pizza;
 import pizza_shop.pizza.PizzaSize;
-import pizza_shop.pizza.pizza_menu.Margarita;
+import pizza_shop.pizza.pizza_menu.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -54,10 +54,51 @@ class PizzaShopTest {
 
     @Test
     void getPizzaThatNeedSupplyNow() {
+        // skip since LocalDate.now() will be different every time
     }
 
     @Test
-    void getPizzaThatNeedSupply() {
+    void getPizzaThatNeedSupply_not_needed() {
+        List<Pizza> needSupplyTuesday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 30));
+        Pizza margarita = new Margarita(PizzaSize.MEDIUM);
+
+        assert needSupplyTuesday.size() == 0;
+        assert !margarita.needsSupply(LocalDate.of(2021, 3, 30));
+        assert !margarita.needsSupply();
+    }
+
+    @Test
+    void getPizzaThatNeedSupply_monday() {
+        List<Pizza> needSupplyMonday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 29));
+
+        assert needSupplyMonday.size() == 1;
+        assert needSupplyMonday.stream().anyMatch(c -> c instanceof Peperonni);
+    }
+
+    @Test
+    void getPizzaThatNeedSupply_wednesday() {
+        List<Pizza> needSupply = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 31));
+
+        assert needSupply.size() == 2;
+        assert needSupply.stream().anyMatch(c -> c instanceof Havaju);
+        assert needSupply.stream().anyMatch(c -> c instanceof Meksikano);
+    }
+
+    @Test
+    void getPizzaThatNeedSupply_friday() {
+        List<Pizza> needSupplyFriday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 1, 1));
+
+        assert needSupplyFriday.size() == 2;
+        assert needSupplyFriday.stream().anyMatch(c -> c instanceof Socioji);
+        assert needSupplyFriday.stream().anyMatch(c -> c instanceof Studentu);
+    }
+
+    @Test
+    void getPizzaThatNeedSupply_saturday() {
+        List<Pizza> needSupplyFriday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 27));
+
+        assert needSupplyFriday.size() == 1;
+        assert needSupplyFriday.stream().anyMatch(c -> c instanceof Vezuvijus);
     }
 
     @Test
