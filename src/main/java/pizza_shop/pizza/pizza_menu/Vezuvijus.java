@@ -26,16 +26,4 @@ public class Vezuvijus extends Pizza {
     public Vezuvijus() {
         super(null, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
     }
-
-    @Override
-    public boolean needsSupply(LocalDate serviceDate) {
-        // returns true if given date is saturday
-        return serviceDate.getDayOfWeek().equals(dayOfSupply);
-    }
-
-    @Override
-    public boolean needsSupply() {
-        // true if today is saturday
-        return LocalDate.now().getDayOfWeek().equals(dayOfSupply);
-    }
 }

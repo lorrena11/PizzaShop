@@ -1,9 +1,7 @@
 package pizza_shop;
 
 import pizza_shop.order.Order;
-import pizza_shop.order.OrderImpl;
 import pizza_shop.pizza.Pizza;
-import pizza_shop.pizza.pizza_menu.*;
 import pizza_shop.service.OrderPriceCalculator;
 import pizza_shop.service.OrderPriceCalculatorImpl;
 
@@ -24,13 +22,7 @@ public class PizzaShop {
      * List of pizzas that are available in this shop
      */
     private final List<Pizza> availablePizzas = List.of(
-        new Havaju(),
-        new Margarita(),
-        new Meksikano(),
-        new Peperonni(),
-        new Socioji(),
-        new Studentu(),
-        new Vezuvijus()
+        // ADD ALL PIZZAS HERE
         );
 
     /**
@@ -48,7 +40,7 @@ public class PizzaShop {
      * @param pizzas that are being ordered (populates orders list)
      */
     public void placeOrder(List<Pizza> pizzas) {
-        this.placeOrder(pizzas, false, LocalDate.now());
+        // CODE HERE!
     }
 
     /**
@@ -57,7 +49,7 @@ public class PizzaShop {
      * @param isStudentDiscount whether the customer is a student
      */
     public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount) {
-        this.placeOrder(pizzas, isStudentDiscount, LocalDate.now());
+        // CODE HERE!
     }
 
     /**
@@ -66,7 +58,7 @@ public class PizzaShop {
      * @param orderDate date when the order was placed
      */
     public void placeHistoryOrder(List<Pizza> pizzas, LocalDate orderDate) {
-        this.placeOrder(pizzas, false, orderDate);
+        // CODE HERE!
     }
 
     /**
@@ -76,7 +68,7 @@ public class PizzaShop {
      * @param orderDate date when the order was placed
      */
     public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount, LocalDate orderDate) {
-        orders.add(new OrderImpl(pizzas, isStudentDiscount, orderDate));
+        // CODE HERE!
     }
 
     /**
@@ -92,9 +84,7 @@ public class PizzaShop {
      * Returns a list of pizzas that supplies need to be ordered by the given date
      */
     public List<Pizza> getPizzaThatNeedSupply(LocalDate localDate) {
-        return availablePizzas.stream()
-                .filter(p -> p.needsSupply(localDate))
-                .collect(Collectors.toList());
+        // CODE HERE!
     }
 
     /**
@@ -105,10 +95,7 @@ public class PizzaShop {
      */
     public BigDecimal getRevenuePerMonth(Month month, Year year)
     {
-        return orders.stream()
-                .filter(o -> orderPriceCalculatorImpl.isOrderGivenMonth(o, month, year))
-                .map(Order::getTotalPrice)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        // CODE HERE!
     }
 
     /**
@@ -116,10 +103,7 @@ public class PizzaShop {
      * Returns the number of students that placed the orders by the given period
      */
     public int getNumberOfStudentsOrders(Month month, Year year) {
-        return (int) orders.stream()
-                .filter(o -> orderPriceCalculatorImpl.isOrderGivenMonth(o, month, year))
-                .filter(Order::isStudentDiscount)
-                .count();
+        // CODE HERE!
     }
 
     /**

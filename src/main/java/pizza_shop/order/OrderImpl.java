@@ -10,40 +10,13 @@ import java.util.List;
 
 public class OrderImpl implements Order {
 
-    private OrderPriceCalculator orderPriceCalculatorImpl = new OrderPriceCalculatorImpl();
-    private List<Pizza> pizzaList;
-    private boolean isStudentDiscount;
-    private LocalDate purchaseDate;
+    private OrderPriceCalculator orderPriceCalculatorImpl = new OrderPriceCalculatorImpl(); // DON'T REMOVE IT. USE IT!
 
     public OrderImpl(List<Pizza> pizzaList, boolean isStudentDiscount) {
-        this.pizzaList = pizzaList;
-        this.isStudentDiscount = isStudentDiscount;
-        this.purchaseDate = LocalDate.now();
+
     }
 
     public OrderImpl(List<Pizza> pizzaList, boolean isStudentDiscount, LocalDate purchaseDate) {
-        this.pizzaList = pizzaList;
-        this.isStudentDiscount = isStudentDiscount;
-        this.purchaseDate = purchaseDate;
-    }
 
-    @Override
-    public List<Pizza> getPizzaList() {
-        return pizzaList;
-    }
-
-    @Override
-    public boolean isStudentDiscount() {
-        return isStudentDiscount;
-    }
-
-    @Override
-    public LocalDate getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    @Override
-    public BigDecimal getTotalPrice() {
-        return orderPriceCalculatorImpl.getOrderPrice(pizzaList, isStudentDiscount);
     }
 }

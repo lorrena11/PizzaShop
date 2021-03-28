@@ -26,16 +26,4 @@ public class Peperonni extends Pizza {
     public Peperonni() {
         super(null, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
     }
-
-    @Override
-    public boolean needsSupply(LocalDate serviceDate) {
-        // returns true if given date is monday
-        return serviceDate.getDayOfWeek().equals(dayOfSupply);
-    }
-
-    @Override
-    public boolean needsSupply() {
-        // true if today is monday
-        return LocalDate.now().getDayOfWeek().equals(dayOfSupply);
-    }
 }
