@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 /**
  * Service that calculates the price of a single pizza
  */
-public class PizzaPriceCalculatorImpl {
+public class PizzaPriceCalculator {
 
     /**
      * 1. Užduotis
