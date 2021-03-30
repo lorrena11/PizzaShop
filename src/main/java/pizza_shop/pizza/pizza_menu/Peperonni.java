@@ -29,11 +29,11 @@ public class Peperonni extends Pizza {
 
     @Override
     public boolean needsSupply(LocalDate date) {
-        return false; // TODO: fix it
+        return date.getDayOfWeek().equals(dayOfSupply);
     }
 
     @Override
     public boolean needsSupply() {
-        return false; // TODO: fix it
+        return LocalDate.now().getDayOfWeek().equals(dayOfSupply);
     }
 }

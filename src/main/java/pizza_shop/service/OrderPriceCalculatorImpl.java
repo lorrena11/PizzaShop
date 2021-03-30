@@ -7,6 +7,7 @@ import pizza_shop.pizza.PizzaPriceComparator;
 import java.math.BigDecimal;
 import java.time.Month;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,9 +41,12 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
 
     @Override
     public BigDecimal calculateAverageOrder(List<Order> orders) {
-        // CODE HERE! It should calculate average price of orders (total orders price / order count)
-       // orders.size()
-        return null;
+        BigDecimal average = BigDecimal.ZERO;
+        for (Order element : orders) {
+            average = average.add(element.getTotalPrice());
+        }
+        average = average.divide(BigDecimal.valueOf(orders.size()));
+        return average;
     }
 
     @Override
@@ -50,7 +54,15 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
         // CODE HERE! It should calculate average price total orders price / order count)
         // of the order for the given period. If we have orders in january and february but we provide that we
         // only counting average for february, we should filter january orders out
-        return null;
+        BigDecimal average;
+        List<Order> averageOrderPeriod = new ArrayList<>();
+        for (Order element : orders) {
+            if (Year.of(element.getPurchaseDate().getYear()).equals(year) && element.getPurchaseDate().getMonth().equals(month)) {
+                averageOrderPeriod.add(element);
+            }
+        }
+        average = calculateAverageOrder(averageOrderPeriod);
+        return average;
     }
 
     @Override
@@ -59,6 +71,7 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
         return false; // TODO: fix it
     }
 //  *********************************************************************************************************
+
     /**
      * @param pizzaList         pizzas that were ordered
      * @param isStudentDiscount determines if the order was made by the student

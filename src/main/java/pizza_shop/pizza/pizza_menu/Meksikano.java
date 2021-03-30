@@ -30,7 +30,7 @@ public class Meksikano extends Pizza {
 
     @Override
     public boolean needsSupply(LocalDate date) {
-        return false;
+        return date.getDayOfWeek().equals(dayOfSupply);
     }
 
     @Override

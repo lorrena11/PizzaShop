@@ -89,8 +89,13 @@ public class PizzaShop {
      * Returns a list of pizzas that supplies need to be ordered by the given date
      */
     public List<Pizza> getPizzaThatNeedSupply(LocalDate localDate) {
-        // CODE HERE!
-        return new ArrayList<>(); // TODO: incorrect
+        List<Pizza> pizzasNeedSupply = new ArrayList<>();
+        for (Pizza element : availablePizzas) {
+            if (element.needsSupply(localDate)) {
+                pizzasNeedSupply.add(element);
+            }
+        }
+        return pizzasNeedSupply;
     }
 
     /**
