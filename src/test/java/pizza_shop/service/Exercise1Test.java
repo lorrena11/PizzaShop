@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static pizza_shop.TestPizzaSupplier.getTestPizzas;
 
 public class Exercise1Test {
@@ -25,7 +26,7 @@ public class Exercise1Test {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM));
 
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, false);
-        assert orderPrice.equals(BigDecimal.valueOf(7));
+        assertEquals(orderPrice, BigDecimal.valueOf(7));
     }
 
     @Test
@@ -33,7 +34,7 @@ public class Exercise1Test {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM));
 
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, true);
-        assert orderPrice.equals(BigDecimal.valueOf(5));
+        assertEquals(orderPrice, BigDecimal.valueOf(5));
     }
 
     @Test
@@ -41,7 +42,7 @@ public class Exercise1Test {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM), new Peperonni(PizzaSize.LARGE), new Vezuvijus(PizzaSize.MEDIUM));
 
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, false);
-        assert orderPrice.equals(BigDecimal.valueOf(17.5));
+        assertEquals(orderPrice, BigDecimal.valueOf(17.5));
     }
 
     @Test
@@ -49,28 +50,28 @@ public class Exercise1Test {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM), new Peperonni(PizzaSize.LARGE), new Vezuvijus(PizzaSize.MEDIUM));
 
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, true);
-        assert orderPrice.equals(BigDecimal.valueOf(14.5));
+        assertEquals(orderPrice, BigDecimal.valueOf(14.5));
     }
 
     @Test
     void placeOrder() {
         pizzaShop.placeOrder(getTestPizzas());
         pizzaShop.placeOrder(getTestPizzas());
-        assert pizzaShop.getOrders().size() == 2;
+        assertEquals(2, pizzaShop.getOrders().size());
     }
 
     @Test
     void testPlaceOrder() {
         pizzaShop.placeOrder(getTestPizzas(), true);
-        assert pizzaShop.getOrders().size() == 1;
+        assertEquals(1, pizzaShop.getOrders().size());
     }
 
     @Test
     void placeHistoryOrder() {
         LocalDate orderDate = LocalDate.of(2021, 1, 1);
         pizzaShop.placeHistoryOrder(getTestPizzas(), LocalDate.of(2021, 1, 1));
-        assert pizzaShop.getOrders().size() == 1;
-        assert pizzaShop.getOrders().get(0).getPurchaseDate().equals(orderDate);
+        assertEquals(1, pizzaShop.getOrders().size());
+        assertEquals(pizzaShop.getOrders().get(0).getPurchaseDate(), orderDate);
     }
 
     @Test
@@ -88,13 +89,13 @@ public class Exercise1Test {
         BigDecimal mediumPrice = pizzaPriceCalculatorImpl.calculatePrice(margaritaMedium);
         BigDecimal largePrice = pizzaPriceCalculatorImpl.calculatePrice(margaritaLarge);
 
-        assert margaritaSmall.getPrice().equals(smallPrice);
-        assert margaritaMedium.getPrice().equals(mediumPrice);
-        assert margaritaLarge.getPrice().equals(largePrice);
+        assertEquals(margaritaSmall.getPrice(), smallPrice);
+        assertEquals(margaritaMedium.getPrice(), mediumPrice);
+        assertEquals(margaritaLarge.getPrice(), largePrice);
     }
 
     @Test
     void getAvailablePizzas() {
-        assert pizzaShop.getAvailablePizzas().size() == 7;
+        assertEquals(7, pizzaShop.getAvailablePizzas().size());
     }
 }

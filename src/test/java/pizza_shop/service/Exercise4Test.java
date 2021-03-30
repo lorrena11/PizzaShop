@@ -13,6 +13,8 @@ import java.time.Month;
 import java.time.Year;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class Exercise4Test {
     private OrderPriceCalculator orderPriceCalculatorImpl = new OrderPriceCalculatorImpl();
 
@@ -24,7 +26,7 @@ public class Exercise4Test {
         Order order2 = new OrderImpl(pizzas, false);
 
         List<Order> orders = List.of(order1, order2);
-        assert orderPriceCalculatorImpl.calculateAverageOrder(orders).equals(BigDecimal.valueOf(6));
+        assertEquals(orderPriceCalculatorImpl.calculateAverageOrder(orders), BigDecimal.valueOf(6));
     }
 
     @Test
@@ -40,6 +42,6 @@ public class Exercise4Test {
 
         BigDecimal averageOrder = orderPriceCalculatorImpl.calculateAverageOrderPeriod(orders, Month.JANUARY, Year.of(2021));
 
-        assert averageOrder.equals(BigDecimal.valueOf(6));
+        assertEquals(averageOrder, BigDecimal.valueOf(6));
     }
 }

@@ -11,6 +11,8 @@ import pizza_shop.pizza.pizza_menu.Vezuvijus;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class Exercise2Test {
 
     private PizzaShop pizzaShop = new PizzaShop();
@@ -20,17 +22,17 @@ public class Exercise2Test {
         List<Pizza> needSupplyTuesday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 30));
         Pizza margarita = new Margarita(PizzaSize.MEDIUM);
 
-        assert needSupplyTuesday.size() == 0;
-        assert !margarita.needsSupply(LocalDate.of(2021, 3, 30));
-        assert !margarita.needsSupply();
+        assertTrue(needSupplyTuesday.size() == 0);
+        assertTrue(!margarita.needsSupply(LocalDate.of(2021, 3, 30)));
+        assertTrue(!margarita.needsSupply());
     }
 
     @Test
     void getPizzaThatNeedSupply_monday() {
         List<Pizza> needSupplyMonday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 29));
 
-        assert needSupplyMonday.size() == 1;
-        assert needSupplyMonday.stream().anyMatch(c -> c instanceof Peperonni);
+        assertTrue(needSupplyMonday.size() == 1);
+        assertTrue(needSupplyMonday.stream().anyMatch(c -> c instanceof Peperonni));
     }
 
     /**
@@ -42,9 +44,9 @@ public class Exercise2Test {
 
         throw new AssertionError();
         // FIXME: uncomment below for tests
-//        assert needSupply.size() == 2;
-//        assert needSupply.stream().anyMatch(c -> c instanceof Havaju);
-//        assert needSupply.stream().anyMatch(c -> c instanceof Meksikano);
+//        assertTrue(needSupply.size() == 2);
+//        assertTrue(needSupply.stream().anyMatch(c -> c instanceof Havaju));
+//        assertTrue(needSupply.stream().anyMatch(c -> c instanceof Meksikano));
     }
 
     /**
@@ -57,16 +59,16 @@ public class Exercise2Test {
 
         throw new AssertionError();
         // FIXME: uncomment below for tests
-//        assert needSupplyFriday.size() == 2;
-//        assert needSupplyFriday.stream().anyMatch(c -> c instanceof Socioji);
-//        assert needSupplyFriday.stream().anyMatch(c -> c instanceof Studentu);
+//        assertTrue(needSupplyFriday.size() == 2);
+//        assertTrue(needSupplyFriday.stream().anyMatch(c -> c instanceof Socioji));
+//        assertTrue(needSupplyFriday.stream().anyMatch(c -> c instanceof Studentu));
     }
 
     @Test
     void getPizzaThatNeedSupply_saturday() {
         List<Pizza> needSupplyFriday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 27));
 
-        assert needSupplyFriday.size() == 1;
-        assert needSupplyFriday.stream().anyMatch(c -> c instanceof Vezuvijus);
+        assertTrue(needSupplyFriday.size() == 1);
+        assertTrue(needSupplyFriday.stream().anyMatch(c -> c instanceof Vezuvijus));
     }
 }
