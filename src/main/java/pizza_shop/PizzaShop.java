@@ -1,6 +1,7 @@
 package pizza_shop;
 
 import pizza_shop.order.Order;
+import pizza_shop.order.OrderImpl;
 import pizza_shop.pizza.Pizza;
 import pizza_shop.service.OrderPriceCalculator;
 import pizza_shop.service.OrderPriceCalculatorImpl;
@@ -21,8 +22,10 @@ public class PizzaShop {
      * List of pizzas that are available in this shop
      */
     private final List<Pizza> availablePizzas = List.of(
+            // todo
+    );
         // TODO: ADD ALL AVAILABLE PIZZAS HERE
-        );
+
 
     /**
      * Calculator that needs to be used to calculate order price
@@ -40,6 +43,7 @@ public class PizzaShop {
      */
     public void placeOrder(List<Pizza> pizzas) {
         // CODE HERE! TODO: ability to place an order with the given pizzas
+        orders.add(new OrderImpl(pizzas, false));
     }
 
     /**
@@ -49,6 +53,7 @@ public class PizzaShop {
      */
     public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount) {
         // CODE HERE! TODO: ability to place an order with the given pizzas and provide student discount
+        orders.add(new OrderImpl(pizzas, isStudentDiscount));
     }
 
     /**
@@ -68,6 +73,7 @@ public class PizzaShop {
      */
     public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount, LocalDate orderDate) {
         // CODE HERE! TODO: add ability to add pizzas and the given date and provide whether the student discount applies
+        orders.add(new OrderImpl(pizzas, isStudentDiscount, orderDate));
     }
 
     /**

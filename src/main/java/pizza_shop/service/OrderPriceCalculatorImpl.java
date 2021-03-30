@@ -2,10 +2,12 @@ package pizza_shop.service;
 
 import pizza_shop.order.Order;
 import pizza_shop.pizza.Pizza;
+import pizza_shop.pizza.PizzaPriceComparator;
 
 import java.math.BigDecimal;
 import java.time.Month;
 import java.time.Year;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,7 +21,18 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
     @Override
     public BigDecimal getOrderPrice(List<Pizza> pizzaList, boolean isStudentDiscount) {
        // CODE HERE! It should calculate the final price of the order
-        return null;
+        BigDecimal price = BigDecimal.ZERO;
+        for (Pizza element : pizzaList) {
+            price.add(element.getPrice());
+        }
+        if (pizzaList.size()>3) {
+            Pizza cheapestPizza = Collections.min(pizzaList, new PizzaPriceComparator());
+            price.subtract(cheapestPizza.getPrice());
+        }
+        if (isStudentDiscount) {
+            price.subtract(BigDecimal.ONE);
+        }
+        return price;
     }
 
     @Override
