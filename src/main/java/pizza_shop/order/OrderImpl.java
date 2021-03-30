@@ -19,4 +19,24 @@ public class OrderImpl implements Order {
     public OrderImpl(List<Pizza> pizzaList, boolean isStudentDiscount, LocalDate purchaseDate) {
 
     }
+
+    @Override
+    public List<Pizza> getPizzaList() {
+        return null; //fixme
+    }
+
+    @Override
+    public boolean isStudentDiscount() {
+        return false; //fixme
+    }
+
+    @Override
+    public LocalDate getPurchaseDate() {
+        return null; //fixme
+    }
+
+    @Override
+    public BigDecimal getTotalPrice() {
+        return null; //fixme
+    }
 }

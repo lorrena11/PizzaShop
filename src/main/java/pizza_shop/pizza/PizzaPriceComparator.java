@@ -9,5 +9,6 @@ public class PizzaPriceComparator implements Comparator<Pizza> {
     @Override
     public int compare(Pizza o1, Pizza o2) {
         // IMPLEMENT
+        return 0; // TODO: fix correct comparison
     }
 }

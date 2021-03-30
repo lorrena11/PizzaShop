@@ -1,17 +1,12 @@
 package pizza_shop.service;
 
-import pizza_shop.exception.EmptyOrderException;
 import pizza_shop.order.Order;
 import pizza_shop.pizza.Pizza;
-import pizza_shop.pizza.PizzaPriceComparator;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.Month;
 import java.time.Year;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service that is responsible for order price calculation
@@ -23,32 +18,40 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
 
     @Override
     public BigDecimal getOrderPrice(List<Pizza> pizzaList, boolean isStudentDiscount) {
-       // CODE HERE!
+       // CODE HERE! It should calculate the final price of the order
+        return null;
     }
 
     @Override
     public BigDecimal calculateAverageOrder(List<Order> orders) {
-        // CODE HERE!
+        // CODE HERE! It should calculate average price of orders (total orders price / order count)
+        return null;
     }
 
     @Override
     public BigDecimal calculateAverageOrderPeriod(List<Order> orders, Month month, Year year) {
-        // CODE HERE!
+        // CODE HERE! It should calculate average price total orders price / order count)
+        // of the order for the given period. If we have orders in january and february but we provide that we
+        // only counting average for february, we should filter january orders out
+        return null;
     }
 
     @Override
     public boolean isOrderGivenMonth(Order o, Month month, Year year) {
-        // CODE HERE!
+        // CODE HERE! Verify whether the order was performed at the given dates. You can reuse this function later
+        return false; // TODO: fix it
     }
 
     /**
-     * Hint: use the comparator here.
      * @param pizzaList pizzas that were ordered
      * @param isStudentDiscount determines if the order was made by the student
      * @return total price of the order excluding cheapest pizza
      */
     private BigDecimal getFreePizzaOrderPrice(List<Pizza> pizzaList, boolean isStudentDiscount) {
-       // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE.
+       // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE AND YOU CAME UP WITH DIFFERENT SOLUTION.
+        // Hint: use the comparator here.
+        // This should determine the cheapest price of pizza and not include it in price calculation
+        return null;
     }
 
     /**
@@ -57,7 +60,10 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
      * @return total price of the order
      */
     private BigDecimal getRegularOrderPrice(List<Pizza> pizzaList, boolean isStudentDiscount) {
-        // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE.
+        // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE AND YOU CAME UP WITH DIFFERENT SOLUTION.
+        // It should calculate regular order price. if it has a student discount, order should be cheaper
+        // HINT: use loop here (or stream api)
+        return null;
     }
 
     /**
@@ -68,6 +74,8 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
      * @return final price of the pizze
      */
     private BigDecimal calculateFinalPrice(Pizza pizza, boolean isStudentDiscount) {
-        // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE.
+        // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE AND YOU CAME UP WITH DIFFERENT SOLUTION.
+        // this method should calculate final price of a single pizza
+        return null;
     }
 }

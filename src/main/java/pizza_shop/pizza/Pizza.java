@@ -17,9 +17,19 @@ public abstract class Pizza implements PizzaAttributes, SupplyIntervalCalculator
     }
 
     @Override
-    public BigDecimal getPrice() {
-        // THIS IS THE PLACE FOR THIS METHOD. USE IT HERE!
+    public PizzaSize getSize() {
+        return null; // todo: return given pizza price
     }
 
-    // IMPLEMENT
+    @Override
+    public BigDecimal getPrice() {
+        // THIS IS THE PLACE FOR THIS METHOD. USE IT HERE!
+        // HINT: use provided calculation service
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Jummy pizza!";
+    }
 }

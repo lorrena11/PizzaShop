@@ -20,7 +20,7 @@ Restoranas siūlo šias picas:
 * Vezuvijaus - 4.5 EUR (maža) / 5.5 EUR (vidutinė) / 7.5 EUR (didelė)
 
 
-##1. Užduotis (20 taškų)
+##1. Užduotis (50 taškų)
 Implimentuokite aukščiau aprašytą sistemą Java aplikacijoje ir panaudokite OOP. Be viso to, 
 panaudokite bent vieną abstrakčią klasę ir bent vieną interface. Būtinai panaudokite jau jums duotą kodą.
 
@@ -38,13 +38,14 @@ Sistema turi sugebėti grąžinti picų sąrašą toms picoms, kurioms reikia u�
 Panaudokite jums jau duotas funckijas.
 
 
-##3. Užduotis (10 taškų)
+##3. Užduotis (5 taškai)
 Picerijos savininkai nori žinoti, kokia buvo mėnesio apyvarta. Taip pat nori žinoti, kiek lankytojų buvo studentai. Panaudokite jau duotas funkcijas.
 
 ##4. Užduotis (10 taškų)
 Tam, kad geriau pažintų savo klientus, restorano savininkai nori pamatyti vidutinį užsakymo dydį. (1)
 Restoranų versle laikotarpiai gali būti sunkūs, tad savininkai nori pamatyti vidutinį užsakymo dydį
-nurodytu periodu (2).
+nurodytu periodu (pvz. turim 3 picas, viena iš jų buvo užsakyta 2021 sausį o kitos dvi tų pačių metų vasarį. Norim paduoti į funkciją mėnesį ir metus
+ir pagal tai apskaičiuoti vidutinį užsakymo dydį pagal duotą periodą) (2).
 
 ##5. Užduotis (5 taškai)
 Parašyti jUnit testus 4 ir 5 užduočiai

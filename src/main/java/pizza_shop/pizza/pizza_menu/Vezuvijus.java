@@ -26,4 +26,14 @@ public class Vezuvijus extends Pizza {
     public Vezuvijus() {
         super(null, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
     }
+
+    @Override
+    public boolean needsSupply(LocalDate date) {
+        return false; // TODO: fix it
+    }
+
+    @Override
+    public boolean needsSupply() {
+        return false; // TODO: fix it
+    }
 }

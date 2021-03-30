@@ -1,17 +1,16 @@
 package pizza_shop.pizza.pizza_menu;
 
-import pizza_shop.pizza.Pizza;
 import pizza_shop.pizza.PizzaSize;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 
 /**
  * Meksikano implementation of the pizza
  * This pizza needs supply on Wednesday
  */
-public class Meksikano extends Pizza {
+// TODO: you need to extend an abstract class
+public class Meksikano {
 
     private DayOfWeek dayOfSupply = DayOfWeek.WEDNESDAY;
 
@@ -20,11 +19,14 @@ public class Meksikano extends Pizza {
     private static final BigDecimal LARGE_PRICE = BigDecimal.valueOf(9);
 
     public Meksikano(PizzaSize pizzaSize) {
-        super(pizzaSize, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
+//        super(pizzaSize, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
     }
 
     public Meksikano() {
-        super(null, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
+//        super(null, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
     }
+
+    // TODO: override necessary methods
+
 
 }
