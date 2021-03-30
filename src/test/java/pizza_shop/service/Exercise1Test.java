@@ -20,7 +20,7 @@ public class Exercise1Test {
     private OrderPriceCalculator orderPriceCalculatorImpl = new OrderPriceCalculatorImpl();
     private PizzaPriceCalculator pizzaPriceCalculatorImpl = new PizzaPriceCalculatorImpl();
     private PizzaShop pizzaShop = new PizzaShop();
-
+// ok
     @Test
     void getOrderPrice_regular() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM));
@@ -28,7 +28,7 @@ public class Exercise1Test {
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, false);
         assertEquals(orderPrice, BigDecimal.valueOf(7));
     }
-
+// ok
     @Test
     void getOrderPrice_student() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM));
@@ -36,7 +36,7 @@ public class Exercise1Test {
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, true);
         assertEquals(orderPrice, BigDecimal.valueOf(5));
     }
-
+// ok
     @Test
     void getOrderPrice_cheapest_free() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM), new Peperonni(PizzaSize.LARGE), new Vezuvijus(PizzaSize.MEDIUM));
@@ -44,7 +44,7 @@ public class Exercise1Test {
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, false);
         assertEquals(orderPrice, BigDecimal.valueOf(17.5));
     }
-
+//ok
     @Test
     void getOrderPrice_cheapest_free_student() {
         List<Pizza> pizzas = List.of(new Margarita(PizzaSize.SMALL), new Margarita(PizzaSize.MEDIUM), new Peperonni(PizzaSize.LARGE), new Vezuvijus(PizzaSize.MEDIUM));
@@ -52,20 +52,20 @@ public class Exercise1Test {
         BigDecimal orderPrice = orderPriceCalculatorImpl.getOrderPrice(pizzas, true);
         assertEquals(orderPrice, BigDecimal.valueOf(14.5));
     }
-
+//ok
     @Test
     void placeOrder() {
         pizzaShop.placeOrder(getTestPizzas());
         pizzaShop.placeOrder(getTestPizzas());
         assertEquals(2, pizzaShop.getOrders().size());
     }
-
+//ok
     @Test
     void testPlaceOrder() {
         pizzaShop.placeOrder(getTestPizzas(), true);
         assertEquals(1, pizzaShop.getOrders().size());
     }
-
+//ok
     @Test
     void placeHistoryOrder() {
         LocalDate orderDate = LocalDate.of(2021, 1, 1);
@@ -78,7 +78,7 @@ public class Exercise1Test {
     void getPizzaThatNeedSupplyNow() {
         // skip since LocalDate.now() will be different every time
     }
-
+//ok
     @Test
     void calculatePrice() {
         Pizza margaritaSmall = new Margarita(PizzaSize.SMALL);

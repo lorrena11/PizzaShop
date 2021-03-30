@@ -20,24 +20,28 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
 
     @Override
     public BigDecimal getOrderPrice(List<Pizza> pizzaList, boolean isStudentDiscount) {
-       // CODE HERE! It should calculate the final price of the order
-        BigDecimal price = BigDecimal.ZERO;
+        // CODE HERE! It should calculate the final price of the order
+        BigDecimal sum = BigDecimal.ZERO;
         for (Pizza element : pizzaList) {
-            price.add(element.getPrice());
+            sum = sum.add(element.getPrice());
         }
-        if (pizzaList.size()>3) {
+        if (pizzaList.size() > 3 && isStudentDiscount) {
             Pizza cheapestPizza = Collections.min(pizzaList, new PizzaPriceComparator());
-            price.subtract(cheapestPizza.getPrice());
+            sum = sum.subtract(cheapestPizza.getPrice());
+            sum = sum.subtract(BigDecimal.ONE.multiply(BigDecimal.valueOf(pizzaList.size() - 1)));
+        } else if (pizzaList.size() > 3) {
+            Pizza cheapestPizza = Collections.min(pizzaList, new PizzaPriceComparator());
+            sum = sum.subtract(cheapestPizza.getPrice());
+        } else if (isStudentDiscount) {
+            sum = sum.subtract(BigDecimal.ONE.multiply(BigDecimal.valueOf(pizzaList.size())));
         }
-        if (isStudentDiscount) {
-            price.subtract(BigDecimal.ONE);
-        }
-        return price;
+        return sum;
     }
 
     @Override
     public BigDecimal calculateAverageOrder(List<Order> orders) {
         // CODE HERE! It should calculate average price of orders (total orders price / order count)
+       // orders.size()
         return null;
     }
 
@@ -54,21 +58,21 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
         // CODE HERE! Verify whether the order was performed at the given dates. You can reuse this function later
         return false; // TODO: fix it
     }
-
+//  *********************************************************************************************************
     /**
-     * @param pizzaList pizzas that were ordered
+     * @param pizzaList         pizzas that were ordered
      * @param isStudentDiscount determines if the order was made by the student
      * @return total price of the order excluding cheapest pizza
      */
     private BigDecimal getFreePizzaOrderPrice(List<Pizza> pizzaList, boolean isStudentDiscount) {
-       // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE AND YOU CAME UP WITH DIFFERENT SOLUTION.
+        // YOU CAN REMOVE THIS METHOD IF YOU DON'T FIND IT USABLE AND YOU CAME UP WITH DIFFERENT SOLUTION.
         // Hint: use the comparator here.
         // This should determine the cheapest price of pizza and not include it in price calculation
         return null;
     }
 
     /**
-     * @param pizzaList pizzas that were ordered
+     * @param pizzaList         pizzas that were ordered
      * @param isStudentDiscount determines if the order was made by the student
      * @return total price of the order
      */
@@ -82,7 +86,8 @@ public class OrderPriceCalculatorImpl implements OrderPriceCalculator {
     /**
      * Returns the price that needs to be paid by the customer. If customer has a student discount, we reduce the
      * price of the pizza by the amount that is declared as a student discount
-     * @param pizza pizzas that were ordered
+     *
+     * @param pizza             pizzas that were ordered
      * @param isStudentDiscount determines if the order was made by the student
      * @return final price of the pizze
      */

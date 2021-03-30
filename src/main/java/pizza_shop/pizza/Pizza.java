@@ -44,11 +44,12 @@ public abstract class Pizza implements PizzaAttributes, SupplyIntervalCalculator
 
     @Override
     public BigDecimal getPrice() {
-       return pizzaPriceCalculator.calculatePrice(this);
+        BigDecimal price = pizzaPriceCalculator.calculatePrice(this);
+        return price;
     }
 
-    @Override
-    public String toString() {
-        return "Yummy pizza!";
-    }
+//    @Override
+//    public String toString() {
+//        return "Yummy pizza!";
+//    }
 }
