@@ -1,16 +1,18 @@
 package pizza_shop.pizza.pizza_menu;
 
+import pizza_shop.pizza.Pizza;
 import pizza_shop.pizza.PizzaSize;
 
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 
 /**
  * Studentu implementation of the pizza
  * This pizza needs supply on Friday
  */
-// TODO: you need to extend an abstract class
-public class Studentu {
+
+public class Studentu extends Pizza {
 
     private DayOfWeek dayOfSupply = DayOfWeek.FRIDAY;
 
@@ -19,12 +21,21 @@ public class Studentu {
     private static final BigDecimal LARGE_PRICE = BigDecimal.valueOf(7.5);
 
     public Studentu(PizzaSize pizzaSize) {
-//        super(pizzaSize, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
+        super(pizzaSize, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
     }
 
     public Studentu() {
-//        super(null, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
+        super(null, SMALL_PRICE, MEDIUM_PRICE, LARGE_PRICE);
     }
 
-    // TODO: override necessary methods
+    @Override
+    public boolean needsSupply(LocalDate date) {
+        return date.getDayOfWeek().equals(dayOfSupply);
+    }
+
+    @Override
+    public boolean needsSupply() {
+        return false;
+    }
+
 }

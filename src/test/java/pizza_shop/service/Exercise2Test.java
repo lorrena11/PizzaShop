@@ -4,9 +4,7 @@ import org.junit.jupiter.api.Test;
 import pizza_shop.PizzaShop;
 import pizza_shop.pizza.Pizza;
 import pizza_shop.pizza.PizzaSize;
-import pizza_shop.pizza.pizza_menu.Margarita;
-import pizza_shop.pizza.pizza_menu.Peperonni;
-import pizza_shop.pizza.pizza_menu.Vezuvijus;
+import pizza_shop.pizza.pizza_menu.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -42,11 +40,11 @@ public class Exercise2Test {
     void getPizzaThatNeedSupply_wednesday() {
         List<Pizza> needSupply = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 3, 31));
 
-        throw new AssertionError();
+        //throw new AssertionError();
         // FIXME: uncomment below for tests
-//        assertTrue(needSupply.size() == 2);
-//        assertTrue(needSupply.stream().anyMatch(c -> c instanceof Havaju));
-//        assertTrue(needSupply.stream().anyMatch(c -> c instanceof Meksikano));
+       assertTrue(needSupply.size() == 2);
+        assertTrue(needSupply.stream().anyMatch(c -> c instanceof Havaju));
+        assertTrue(needSupply.stream().anyMatch(c -> c instanceof Meksikano));
     }
 
     /**
@@ -55,7 +53,6 @@ public class Exercise2Test {
     @Test
     void getPizzaThatNeedSupply_friday() {
         List<Pizza> needSupplyFriday = pizzaShop.getPizzaThatNeedSupply(LocalDate.of(2021, 1, 1));
-
 
         throw new AssertionError();
         // FIXME: uncomment below for tests

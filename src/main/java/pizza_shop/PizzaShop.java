@@ -1,7 +1,9 @@
 package pizza_shop;
 
 import pizza_shop.order.Order;
+import pizza_shop.order.OrderImpl;
 import pizza_shop.pizza.Pizza;
+import pizza_shop.pizza.pizza_menu.*;
 import pizza_shop.service.OrderPriceCalculator;
 import pizza_shop.service.OrderPriceCalculatorImpl;
 
@@ -20,9 +22,8 @@ public class PizzaShop {
     /**
      * List of pizzas that are available in this shop
      */
-    private final List<Pizza> availablePizzas = List.of(
-        // TODO: ADD ALL AVAILABLE PIZZAS HERE
-        );
+    private final List<Pizza> availablePizzas = List.of(new Havaju(), new Margarita(), new Meksikano(), new Peperonni(), new Socioji(), new Studentu(), new Vezuvijus());
+
 
     /**
      * Calculator that needs to be used to calculate order price
@@ -36,38 +37,42 @@ public class PizzaShop {
 
     /**
      * 1. Užduotis
+     *
      * @param pizzas that are being ordered (populates orders list)
      */
     public void placeOrder(List<Pizza> pizzas) {
-        // CODE HERE! TODO: ability to place an order with the given pizzas
+        orders.add(new OrderImpl(pizzas, false));
     }
 
     /**
      * 1. Užduotis
-     * @param pizzas that are being ordered
+     *
+     * @param pizzas            that are being ordered
      * @param isStudentDiscount whether the customer is a student
      */
     public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount) {
-        // CODE HERE! TODO: ability to place an order with the given pizzas and provide student discount
+        orders.add(new OrderImpl(pizzas, isStudentDiscount));
     }
 
     /**
      * 1. Užduotis
-     * @param pizzas that are being ordered
+     *
+     * @param pizzas    that are being ordered
      * @param orderDate date when the order was placed
      */
     public void placeHistoryOrder(List<Pizza> pizzas, LocalDate orderDate) {
-        // CODE HERE! TODO: add ability to add pizzas and the given date
+        orders.add(new OrderImpl(pizzas, false, orderDate));
     }
 
     /**
      * 1. Užduotis
-     * @param pizzas that are being ordered
+     *
+     * @param pizzas            that are being ordered
      * @param isStudentDiscount whether the customer is a student
-     * @param orderDate date when the order was placed
+     * @param orderDate         date when the order was placed
      */
     public void placeOrder(List<Pizza> pizzas, boolean isStudentDiscount, LocalDate orderDate) {
-        // CODE HERE! TODO: add ability to add pizzas and the given date and provide whether the student discount applies
+        orders.add(new OrderImpl(pizzas, isStudentDiscount, orderDate));
     }
 
     /**
@@ -84,14 +89,20 @@ public class PizzaShop {
      * Returns a list of pizzas that supplies need to be ordered by the given date
      */
     public List<Pizza> getPizzaThatNeedSupply(LocalDate localDate) {
-        // CODE HERE!
-        return new ArrayList<>(); // TODO: incorrect
+        List<Pizza> pizzasNeedSupply = new ArrayList<>();
+        for (Pizza element : availablePizzas) {
+            if (element.needsSupply(localDate)) {
+                pizzasNeedSupply.add(element);
+            }
+        }
+        return pizzasNeedSupply;
     }
 
     /**
      * 3. Užduotis, part 1
+     *
      * @param month the month of which the revenue must be calculated
-     * @param year the year where the month is in
+     * @param year  the year where the month is in
      * @return The revenue of the pizza shop in the specified month and year given
      * For example: we have orders on 2021/01/20 and 2021/02/04. Then provided month is january and year 2021
      * it should sum all sold pizzas that order date was 2021/01/01 - 2021/01/31.
@@ -130,6 +141,7 @@ public class PizzaShop {
 
     /**
      * 1. Užduotis
+     *
      * @return all available pizzas
      */
     public List<Pizza> getAvailablePizzas() {
@@ -138,6 +150,7 @@ public class PizzaShop {
 
     /**
      * 1. Užduotis
+     *
      * @return orders that were placed in this pizza shop
      */
     public List<Order> getOrders() {

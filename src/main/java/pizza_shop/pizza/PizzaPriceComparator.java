@@ -8,7 +8,6 @@ import java.util.Comparator;
 public class PizzaPriceComparator implements Comparator<Pizza> {
     @Override
     public int compare(Pizza o1, Pizza o2) {
-        // IMPLEMENT
-        return 0; // TODO: fix correct comparison
+        return o1.getPrice().intValue() - o2.getPrice().intValue();
     }
 }
